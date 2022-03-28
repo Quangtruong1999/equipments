@@ -1,6 +1,7 @@
+import warnings
 from datetime import timedelta, datetime
 
-from odoo import fields, models, api
+from odoo import fields, models, api, exceptions
 from odoo.http import request
 
 
@@ -15,7 +16,7 @@ class RegisterEquipment(models.Model):
         help="Ngày bắt đầu của việc mượn thiết bị")
     stop = fields.Datetime(
         'Kết thúc vào', required=True, tracking=True, default=lambda self: fields.Datetime.today() + timedelta(hours=1),
-        compute='_compute_stop', readonly=False, store=True,
+         readonly=False, store=True,
         help="Ngày kết thúc của việc mượn thiết bị")
     # start_date = fields.Date(
     #     'Bắt đầu vào', store=True, tracking=True,
@@ -79,7 +80,7 @@ class RegisterEquipment(models.Model):
                 'all_day': vals.get('all_day'),
                 'user_id': vals.get('user_id'),
                 'location': vals.get('location'),
-                'equipment_id': equip
+                'equipment_id': equip,
             }
             print(value)
             self.env['booking.history'].create(value)
@@ -95,6 +96,8 @@ class RegisterEquipment(models.Model):
         if not start or not stop:
             return 0
         duration = (stop - start).total_seconds() / 3600
+        if duration < 0:
+            return 0
         return round(duration, 2)
 
     @api.depends('start', 'duration')
@@ -108,6 +111,9 @@ class RegisterEquipment(models.Model):
     def _compute_duration(self):
         for event in self:
             event.duration = self._get_duration(event.start, event.stop)
+            if event.duration <= 0:
+                event.stop = None
+
 
     @api.depends('start', 'duration')
     def _compute_stop(self):

@@ -52,7 +52,7 @@
             <field name="name">booking.history.form</field>
             <field name="model">booking.history</field>
             <field name="arch" type="xml">
-                <tree string="Lịch sử dụng phòng họp">
+                <tree string="Lịch sử dụng phòng họp" create="false">
                     <field name="equipment_id"/>
                     <field name="start"/>
                     <field name="stop"/>
