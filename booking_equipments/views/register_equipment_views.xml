@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="register_equipment_form_view" model="ir.ui.view">
+            <field name="name">register.equipment.form</field>
+            <field name="model">register.equipment</field>
+            <field name="arch" type="xml">
+                <form string="Đăng ký">
+                    <sheet>
+                        <div class="oe_title">
+                            <h3>
+                                Đăng ký sử dụng thiết bị
+                            </h3>
+                            <field name="name" placeholder="Mã số" invisible="True"/>
+                        </div>
+                        <notebook>
+                            <page name="page_details" string="Thông tin đăng kí">
+                                <group>
+                                    <group>
+                                        <field name="start" string="Bắt đầu vào"/>
+                                        <field name="stop" string="Kết thúc vào"/>
+                                        <label for="duration"/>
+                                        <div>
+                                            <field name="duration" widget="float_time" string="Duration"
+                                                   />
+                                            <span> hours</span>
+                                        </div>
+<!--                                        <field name="all_day" force_save="1"/>-->
+                                        <field name="user_id" widget="many2one_avatar_user"/>
+                                    </group>
+                                    <group>
+                                        <field name="location"/>
+                                        <field name="equipments" widget="many2many_tags"/>
+                                        <field name="register_tags"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="description" placeholder="Mô tả"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="register_equipment_tree_view" model="ir.ui.view">
+            <field name="name">register.equipment.tree</field>
+            <field name="model">register.equipment</field>
+            <field name="arch" type="xml">
+                <tree string="Đăng kí">
+                    <field name="user_id" widget="many2one_avatar_user"/>
+                    <field name="start"/>
+                    <field name="stop"/>
+                    <field name="equipments" widget="many2many_tags"/>
+                    <field name="duration"/>
+                    <field name="register_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="register_equipment_act_window" model="ir.actions.act_window">
+            <field name="name">Đăng ký</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">register.equipment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new Register.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="booking_history_form_view" model="ir.ui.view">
+            <field name="name">booking.history.form</field>
+            <field name="model">booking.history</field>
+            <!--            <field name="priority" eval="8"/>-->
+            <field name="arch" type="xml">
+                <form string="Đăng kí">
+                    <sheet>
+                        <div class="oe_title mb-3">
+                            <div>
+                                <h3>Đăng kí sử dụng thiết bị</h3>
+                            </div>
+                        </div>
+                        <notebook>
+                            <page name="page_details" string="Thông tin đăng kí">
+                                <group>
+                                    <group>
+                                        <field name="start" string="Bắt đầu vào"
+                                               attrs="{'required': [('all_day','=',False)], 'invisible': [('all_day','=',True)]}"/>
+                                        <field name="stop" string="Kết thúc vào"
+                                               attrs="{'invisible': [('all_day','=',True)]}"/>
+                                        <label for="duration" attrs="{'invisible': [('all_day','=',True)]}"/>
+                                        <div attrs="{'invisible': [('all_day','=',True)]}">
+                                            <field name="duration" widget="float_time" string="Duration"
+                                                   class="oe_inline"
+                                                   attrs="{'readonly': [('id', '!=', False)]}"/>
+                                            <span> hours</span>
+                                        </div>
+                                        <!--                                        <field name="event_tz" attrs="{'invisible': [('recurrency', '=', False)]}"/>-->
+                                        <field name="all_day" force_save="1"/>
+                                        <field name="user_id" widget="many2one_avatar_user"/>
+                                    </group>
+                                    <!--                                    <group>-->
+                                    <!--                                        <field name="alarm_ids" widget="many2many_tags"-->
+                                    <!--                                               options="{'no_quick_create': True}"/>-->
+                                    <!--                                        <field name="location"/>-->
+                                    <!--                                        <field name="videocall_location"/>-->
+                                    <!--                                        <field name="categ_ids" widget="many2many_tags"-->
+                                    <!--                                               options="{'color_field': 'color', 'no_create_edit': True}"/>-->
+                                    <!--                                    </group>-->
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="booking_history_tree_view" model="ir.ui.view">
+            <field name="name">booking.history.form</field>
+            <field name="model">booking.history</field>
+            <field name="arch" type="xml">
+                <tree string="Lịch sử dụng phòng họp">
+                    <field name="name_equipment"/>
+                    <field name="start"/>
+                    <field name="stop"/>
+                    <!--                    <field name="partner_ids" widget="many2many_tags"/>-->
+                    <!--                    <field name="location"/>-->
+                    <field name="duration"/>
+                    <!--                    <field name="equipment" widget="many2many_tags"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="booking_history_act_window" model="ir.actions.act_window">
+            <field name="name">Lịch đặt thiết bị</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">booking.history</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new booking.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
