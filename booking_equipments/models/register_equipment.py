@@ -58,7 +58,7 @@ class RegisterEquipment(models.Model):
     @api.model
     def create(self, vals):
         print('values of order = ', vals)
-        print('self  of order= ', self.id)
+        print('self  of order= ', self)
         # equipments = vals.get('equipments')[0][2]
         # for equip in equipments:
         #     line_tmp = {}
@@ -69,6 +69,20 @@ class RegisterEquipment(models.Model):
         #     line_tmp['duration'] = vals.get('duration')
         #     line_tmp['equipment_id'] = equipment.id
         # print('equipment = ', equipments)
+        all_equip = self.env['equipment.manager']
+        for equip in vals.get('equipments')[0][2]:
+            print(equip)
+            print('aaaa')
+            value = {
+                'start': vals.get('start'),
+                'stop': vals.get('stop'),
+                'all_day': vals.get('all_day'),
+                'user_id': vals.get('user_id'),
+                'location': vals.get('location'),
+                'equipment_id': equip
+            }
+            print(value)
+            self.env['booking.history'].create(value)
         return super(RegisterEquipment, self).create(vals)
 
     def write(self, vals):
@@ -76,6 +90,8 @@ class RegisterEquipment(models.Model):
 
     def _get_duration(self, start, stop):
         """ Get the duration value between the 2 given dates. """
+        print(type(start))
+        print('stop: ', stop)
         if not start or not stop:
             return 0
         duration = (stop - start).total_seconds() / 3600
