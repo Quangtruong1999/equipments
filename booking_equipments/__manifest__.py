@@ -23,12 +23,12 @@
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
-        'views/equipment_tag_views.xml',
-        'views/equipment_manager_views.xml',
-        'views/register_equipment_views.xml',
-        'views/booking_history_views.xml',
-        'views/menus.xml',
+        # 'security/ir.model.access.csv',
+        # 'views/equipment_tag_views.xml',
+        # 'views/equipment_manager_views.xml',
+        # 'views/register_equipment_views.xml',
+        # 'views/booking_history_views.xml',
+        # 'views/menus.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
