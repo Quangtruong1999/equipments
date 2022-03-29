@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Đăng ký sử dụng thiết bị",
-
     'summary': """
         Quản lý, đặt lich sử dụng các thiết bị văn phòng""",
 
