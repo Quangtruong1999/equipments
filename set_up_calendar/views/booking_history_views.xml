@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="booking_history_tree_view" model="ir.ui.view">
+            <field name="name">booking.history.form</field>
+            <field name="model">booking.history</field>
+            <field name="arch" type="xml">
+                <tree string="Lịch đặt thiết bị">
+                    <field name="equipment_id"/>
+                    <field name="start"/>
+                    <field name="stop"/>
+                    <field name="user_id"/>
+                    <field name="duration"/>
+                </tree>
+            </field>
+        </record>
+
+<!--        <record id="ModelName_search_view" model="ir.ui.view">-->
+<!--            <field name="name">ProjectName.ModelName.search</field>-->
+<!--            <field name="model">ProjectName.ModelName</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="ModelTitle">-->
+<!--                    <group expand="1" string="Group By">-->
+<!--                        <filter string="Example Field" name="example_field" domain="[]"-->
+<!--                                context="{'group_by':'example_field'}"/>-->
+<!--                    </group>-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="booking_history_act_window" model="ir.actions.act_window">
+            <field name="name">Lịch đặt thiết bị</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">booking.history</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new booking.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
