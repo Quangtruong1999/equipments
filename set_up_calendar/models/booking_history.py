@@ -1,4 +1,6 @@
-from odoo import fields, models, api
+from datetime import datetime, timedelta, date
+
+from odoo import fields, models, api, exceptions
 
 
 class BookingHistory(models.Model):
@@ -30,6 +32,14 @@ class BookingHistory(models.Model):
 
     @api.model
     def create(self, values):
+        print(values.get('start'))
+        print(type(values.get('start')))
+        start = datetime.strptime(values.get('start'), '%Y-%m-%d %H:%M:%S')
+        stop = datetime.strptime(values.get('stop'), '%Y-%m-%d %H:%M:%S')
+        print(start)
+        print(type(start))
+        if stop < start:
+            raise exceptions.UserError('lỗi tạo')
         return super(BookingHistory, self).create(values)
 
     def write(self, values):

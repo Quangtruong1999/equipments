@@ -3,7 +3,6 @@ from odoo.exceptions import ValidationError, UserError
 from datetime import datetime
 
 
-
 class CalendarEvent(models.Model):
     # _name = 'set.up.calender'
     _inherit = 'calendar.event'
@@ -17,23 +16,32 @@ class CalendarEvent(models.Model):
         index=True,
         store=True
     )
-    #còn lỗi
-    def check_duplicate(self, start, stop):
-        all_record_booking = self.env['booking.history'].sudo().search([])
-        print('all_record_booking = ', all_record_booking)
-        print('start = ', datetime.fromisoformat(start))
-        for rec in all_record_booking:
-            if (datetime.fromisoformat(start) >= rec.start and rec.stop >= datetime.fromisoformat(start)) or (
-                    datetime.fromisoformat(stop) >= rec.stop and datetime.fromisoformat(stop) >= rec.start):
+
+    # còn lỗi
+    def check_duplicate(self, start, stop, values):
+        print('check check check')
+        print(start)
+        print(stop)
+        all_record_booking = self.env['booking.history'].sudo().search(
+            ['|','&',('start', '>=', start),  ('start', '<=', stop),'&', ('start', '<=', start), ('stop', '>=', start)]
+        )
+
+        for eq in all_record_booking:
+            if eq.equipment_id.ids[0] in values:
                 return False
+        print('all_record_booking = ', all_record_booking)
+        # print('start = ', datetime.fromisoformat(start))
+        # if all_record_booking:
+        #     return False
         return True
 
     @api.model
     def create(self, vals):
         print('values of order = ', vals)
         print('equipments get = ', vals.get('equipment')[0][2])
-        # if not self.check_duplicate(vals.get('start'), vals.get('stop')):
-        #     raise UserError(_("Trùng lịch"))
+        if not self.check_duplicate(vals.get('start'), vals.get('stop'), vals.get('equipment')[0][2]):
+            raise UserError(_("Trùng lịch"))
+
         result = super(CalendarEvent, self).create(vals)
         print('result = ', result)
         for equip in vals.get('equipment')[0][2]:
