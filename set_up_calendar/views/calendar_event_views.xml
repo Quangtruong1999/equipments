@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="calendar_event_form_inherit" model="ir.ui.view">
+            <field name="name">calendar.event.form</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page/group/group/field[@name='location']" position="before">
+                    <field name="equipment" widget="many2many_tags" placeholder="Select equipment"/>
+                </xpath>
+            </field>
+        </record>
+        <!--        <record id="calendar_event_tree_view" model="ir.ui.view">-->
+        <!--            <field name="name">calendar.form</field>-->
+        <!--            <field name="model">calendar.event</field>-->
+        <!--            <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <tree string="Lịch sử dụng phòng họp">-->
+        <!--                </tree>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+<!--        <record id="calendar_event_act_window" model="ir.actions.act_window">-->
+<!--            <field name="name">Lịch</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">calendar.event</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--            <field name="domain">-->
+<!--                [('equipment', '!=', False)]-->
+<!--            </field>-->
+<!--            <field name="help" type="html">-->
+<!--                <p class="o_view_nocontent_smiling_face">-->
+<!--                    Create a new event-->
+<!--                </p>-->
+<!--            </field>-->
+<!--        </record>-->
+    </data>
+</odoo>

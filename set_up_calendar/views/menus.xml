@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <menuitem id="menu_set_up_calendar_root" name="Quản lí thiết bị" sequence="0"
+                  web_icon="loyalty_program,static/description/icon.png"/>
+
+        <!--        main menu-->
+        <menuitem id="menu_book_equiment" name="Lịch đặt thiết bị" action="booking_history_act_window" sequence="0"
+                  parent="menu_set_up_calendar_root"/>
+        <menuitem id="menu_equipment_manager_act" name="Thiết bị" parent="menu_set_up_calendar_root"
+                  action="equipment_manager_act_window" sequence="1"/>
+        <menuitem id="menu_configuretion" name="Configuretion" sequence="2" parent="menu_set_up_calendar_root"/>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="menu_equipment_tag_manager_act" name="Từ khóa" parent="menu_configuretion"
+                  action="equipment_tag_act_window" sequence="1"/>
+    </data>
+</odoo>
