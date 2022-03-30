@@ -22,7 +22,6 @@
                   action="equipment_tag_act_window" sequence="1"/>
 
         <!-- Menu Calendar-->
-
         <menuitem id="menu_set_up_management1" name="Management" sequence="0"
                   parent="calendar.mail_menu_calendar"/>
         <!--        Management sub menu-->
