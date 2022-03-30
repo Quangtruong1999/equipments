@@ -36,7 +36,7 @@
             <field name="arch" type="xml">
                 <search string="filter_time">
                     <filter string="Time" name="filter_stop_time_event" date="stop" />
-                    <filter string="Future" name="filter_future_event" domain="[('stop', '>', 'today')]"/>
+                    <filter string="Future" name="filter_future_event" domain="[('stop', '>',datetime.datetime.now().strftime('%Y-%m-%d'))]"/>
                 </search>
             </field>
         </record>
