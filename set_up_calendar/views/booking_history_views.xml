@@ -29,6 +29,35 @@
 <!--            </field>-->
 <!--        </record>-->
 
+        <!--        filter-->
+        <record id="view_time_end_event_search" model="ir.ui.view">
+            <field name="name">time.search</field>
+            <field name="model">booking.history</field>
+            <field name="arch" type="xml">
+                <search string="filter_time">
+                    <filter string="Time" name="filter_stop_time_event" date="stop" />
+                    <filter string="Future" name="filter_future_event" domain="[('stop', '>', 'today')]"/>
+                </search>
+            </field>
+        </record>
+
+<!--        <record id="action_time_end_event" model="ir.actions.act_window">-->
+<!--            <field name="name">Filter time end Event</field>-->
+<!--            <field name="res_model">booking.history</field>-->
+<!--            <field name="view_mode">calendar,tree,form</field>-->
+<!--    &lt;!&ndash;        <field name="view_id" ref="view_calendar_event_search"/>&ndash;&gt;-->
+<!--            <field name="search_view_id" ref="view_time_end_event_search"/>-->
+<!--            <field name="help" type="html">-->
+<!--              <p class="o_view_nocontent_smiling_face">-->
+<!--                No meetings found. Let's schedule one!-->
+<!--              </p><p>-->
+<!--                The calendar is shared between employees and fully integrated with-->
+<!--                other applications such as the employee leaves or the business-->
+<!--                opportunities.-->
+<!--              </p>-->
+<!--            </field>-->
+<!--        </record>-->
+
         <record id="booking_history_act_window" model="ir.actions.act_window">
             <field name="name">Lịch đặt thiết bị</field>
             <field name="type">ir.actions.act_window</field>
