@@ -29,6 +29,18 @@
 <!--            </field>-->
 <!--        </record>-->
 
+        <!--        filter-->
+        <record id="view_time_end_event_search" model="ir.ui.view">
+            <field name="name">time.search</field>
+            <field name="model">booking.history</field>
+            <field name="arch" type="xml">
+                <search string="filter_time">
+                    <filter string="Time" name="filter_stop_time_event" date="stop" />
+                    <filter string="Future" name="filter_future_event" domain="[('stop', '>',datetime.datetime.now().strftime('%Y-%m-%d'))]"/>
+                </search>
+            </field>
+        </record>
+
         <record id="booking_history_act_window" model="ir.actions.act_window">
             <field name="name">Lịch đặt thiết bị</field>
             <field name="type">ir.actions.act_window</field>
