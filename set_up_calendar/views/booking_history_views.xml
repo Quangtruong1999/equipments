@@ -16,18 +16,21 @@
             </field>
         </record>
 
-<!--        <record id="ModelName_search_view" model="ir.ui.view">-->
-<!--            <field name="name">ProjectName.ModelName.search</field>-->
-<!--            <field name="model">ProjectName.ModelName</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <search string="ModelTitle">-->
-<!--                    <group expand="1" string="Group By">-->
-<!--                        <filter string="Example Field" name="example_field" domain="[]"-->
-<!--                                context="{'group_by':'example_field'}"/>-->
-<!--                    </group>-->
-<!--                </search>-->
-<!--            </field>-->
-<!--        </record>-->
+        <record id="booking_history_search_view" model="ir.ui.view">
+            <field name="name">booking.history.search</field>
+            <field name="model">booking.history</field>
+            <field name="arch" type="xml">
+                <search string="Search booking history">
+                    <field name="equipment_id" string = " "
+                           filter_domain="['|',('equipment_id', 'ilike', self),('user_id', 'ilike', self)]"/>
+                    <field name="equipment_id"/>
+                    <field name="user_id"/>
+<!--                    <field name="duration"/>-->
+<!--                    <field name="start"/>-->
+<!--                    <field name="stop"/>-->
+                </search>
+            </field>
+        </record>
 
         <!--        filter-->
         <record id="view_time_end_event_search" model="ir.ui.view">
