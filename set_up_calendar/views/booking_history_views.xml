@@ -21,13 +21,13 @@
             <field name="model">booking.history</field>
             <field name="arch" type="xml">
                 <search string="Search booking history">
-                    <field name="equipment_id" string = " "
+                    <field name="equipment_id" string=" "
                            filter_domain="['|',('equipment_id', 'ilike', self),('user_id', 'ilike', self)]"/>
                     <field name="equipment_id"/>
                     <field name="user_id"/>
-<!--                    <field name="duration"/>-->
-<!--                    <field name="start"/>-->
-<!--                    <field name="stop"/>-->
+                    <!--                    <field name="duration"/>-->
+                    <!--                    <field name="start"/>-->
+                    <!--                    <field name="stop"/>-->
                 </search>
             </field>
         </record>
@@ -38,7 +38,7 @@
             <field name="model">booking.history</field>
             <field name="arch" type="xml">
                 <search string="filter_time">
-                    <filter string="Time" name="filter_stop_time_event" date="stop" />
+                    <filter string="Time" name="filter_stop_time_event" date="stop"/>
                     <separator/>
                     <filter string="This day" name="this_day" domain="[
                         ('stop','&lt;=', datetime.datetime.combine(context_today() + relativedelta(days=1), datetime.time(0,0,1)).strftime('%Y-%m-%d')),
@@ -76,7 +76,8 @@
                         ('stop','&gt;=', datetime.datetime.combine(context_today() + relativedelta(days=365), datetime.time(0,0,0)).strftime('%%Y-01-01'))
                         ]"/>
                     <separator/>
-                    <filter string="Future" name="filter_future_event" domain="[('stop', '>',datetime.datetime.now().strftime('%Y-%m-%d'))]"/>
+                    <filter string="Future" name="filter_future_event"
+                            domain="[('stop', '>',datetime.datetime.now().strftime('%Y-%m-%d'))]"/>
                 </search>
             </field>
         </record>
