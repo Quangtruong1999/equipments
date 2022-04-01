@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Đăng ký sử dụng thiết bị",
+    'name': "Đăng ký sử dụng thiết bị test 1",
     'summary': """
-        Quản lý, đặt lich sử dụng các thiết bị văn phòng""",
+        Quản lý, đặt lich sử dụng các thiết bị văn phòng cloudmedia""",
 
     'description': """
-        Quản lý, đặt lich sử dụng các thiết bị văn phòng
+        Quản lý, đặt lich sử dụng các thiết bị văn phòng cloudmedia
     """,
 
     'author': "My Company",

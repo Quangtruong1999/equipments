@@ -2,24 +2,24 @@
 <odoo>
     <data>
         <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
-        <menuitem id="menu_set_up_calendar_root" name="Quản lí thiết bị" sequence="0"
-                  web_icon="loyalty_program,static/description/icon.png"/>
+<!--        <menuitem id="menu_set_up_calendar_root" name="Quản lí thiết bị" sequence="0"-->
+<!--                  web_icon="loyalty_program,static/description/icon.png"/>-->
 
-        <!--        main menu-->
+<!--        &lt;!&ndash;        main menu&ndash;&gt;-->
 
-        <!--        Management menu-->
-        <menuitem id="menu_set_up_management" name="Management" sequence="0" parent="menu_set_up_calendar_root"/>
-        <!--        Management sub menu-->
-        <menuitem id="menu_book_equiment" name="Lịch đặt thiết bị" action="booking_history_act_window" sequence="0"
-                  parent="menu_set_up_management"/>
-        <menuitem id="menu_equipment_manager_act" name="Thiết bị" parent="menu_set_up_management"
-                  action="equipment_manager_act_window" sequence="1"/>
+<!--        &lt;!&ndash;        Management menu&ndash;&gt;-->
+<!--        <menuitem id="menu_set_up_management" name="Management" sequence="0" parent="menu_set_up_calendar_root"/>-->
+<!--        &lt;!&ndash;        Management sub menu&ndash;&gt;-->
+<!--        <menuitem id="menu_book_equiment" name="Lịch đặt thiết bị" action="booking_history_act_window" sequence="0"-->
+<!--                  parent="menu_set_up_management"/>-->
+<!--        <menuitem id="menu_equipment_manager_act" name="Thiết bị" parent="menu_set_up_management"-->
+<!--                  action="equipment_manager_act_window" sequence="1"/>-->
 
-        <menuitem id="menu_configuretion" name="Configuretion" sequence="2" parent="menu_set_up_calendar_root"/>
+<!--        <menuitem id="menu_configuretion" name="Configuretion" sequence="2" parent="menu_set_up_calendar_root"/>-->
 
-        <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="menu_equipment_tag_manager_act" name="Từ khóa" parent="menu_configuretion"
-                  action="equipment_tag_act_window" sequence="1"/>
+<!--        &lt;!&ndash; This Menu Item must have a parent and an action &ndash;&gt;-->
+<!--        <menuitem id="menu_equipment_tag_manager_act" name="Từ khóa" parent="menu_configuretion"-->
+<!--                  action="equipment_tag_act_window" sequence="1"/>-->
 
         <!-- Menu Calendar-->
         <menuitem id="menu_set_up_management1" name="Management" sequence="0"
@@ -29,5 +29,7 @@
                   parent="menu_set_up_management1"/>
         <menuitem id="menu_equipment_manager_act1" name="Thiết bị" parent="menu_set_up_management1"
                   action="equipment_manager_act_window" sequence="1"/>
+        <menuitem id="menu_book_equiment_tag" name="Từ khóa" action="equipment_tag_act_window" sequence="2"
+                  parent="menu_set_up_management1"/>
     </data>
 </odoo>
