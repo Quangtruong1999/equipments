@@ -16,21 +16,21 @@
             </field>
         </record>
 
-        <record id="booking_history_search_view" model="ir.ui.view">
-            <field name="name">booking.history.search</field>
-            <field name="model">booking.history</field>
-            <field name="arch" type="xml">
-                <search string="Search booking history">
-                    <field name="equipment_id" string=" "
-                           filter_domain="['|',('equipment_id', 'ilike', self),('user_id', 'ilike', self)]"/>
-                    <field name="equipment_id"/>
-                    <field name="user_id"/>
-                    <!--                    <field name="duration"/>-->
-                    <!--                    <field name="start"/>-->
-                    <!--                    <field name="stop"/>-->
-                </search>
-            </field>
-        </record>
+<!--        <record id="booking_history_search_view" model="ir.ui.view">-->
+<!--            <field name="name">booking.history.search</field>-->
+<!--            <field name="model">booking.history</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="Search booking history">-->
+<!--                    <field name="equipment_id" string=" "-->
+<!--                           filter_domain="['|',('equipment_id', 'ilike', self),('user_id', 'ilike', self)]"/>-->
+<!--                    <field name="equipment_id"/>-->
+<!--                    <field name="user_id"/>-->
+<!--                    &lt;!&ndash;                    <field name="duration"/>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <field name="start"/>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <field name="stop"/>&ndash;&gt;-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
 
         <!--        filter-->
         <record id="view_time_end_event_search" model="ir.ui.view">
@@ -38,12 +38,15 @@
             <field name="model">booking.history</field>
             <field name="arch" type="xml">
                 <search string="filter_time">
+                    <field name="equipment_id" string="Tên thiết bị"
+                           filter_domain="['|',('equipment_id', 'ilike', self),('user_id', 'ilike', self)]"/>
+                    <field name="user_id"/>
                     <filter string="Time" name="filter_stop_time_event" date="stop"/>
                     <separator/>
                     <filter string="This day" name="this_day" domain="[
                         ('stop','&lt;=', datetime.datetime.combine(context_today() + relativedelta(days=1), datetime.time(0,0,1)).strftime('%Y-%m-%d')),
                         ('stop','&gt;=', datetime.datetime.combine(context_today() + relativedelta(days=-1), datetime.time(23,59,59)).strftime('%Y-%m-%d'))
-                    ]"/>
+                    ]" default_period="1"/>
                     <filter string="This week" name="this_week" domain="[
                         ('stop', '&lt;=', datetime.datetime.combine(context_today() + relativedelta(weeks=0, days=0, weekday=0), datetime.time(0,0,0)).strftime('%Y-%m-%d')),
                         ('stop', '&gt;=', datetime.datetime.combine(context_today() + relativedelta(weeks=-2, days=6, weekday=6), datetime.time(0,0,0)).strftime('%Y-%m-%d'))
@@ -86,6 +89,7 @@
             <field name="name">Lịch đặt thiết bị</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">booking.history</field>
+            <field name="context">{"this_day": 1}</field>
             <field name="view_mode">tree</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">

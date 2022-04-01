@@ -22,7 +22,7 @@ class BookingHistory(models.Model):
     duration = fields.Float('Thời lượng/h', help='Đơn vị tính bằng h', index=True, store=True)
     user_id = fields.Many2one('res.users', 'Người đăng kí', default=lambda self: self.env.user)
     equipment_id = fields.Many2one(
-        string="Equipment_id",
+        string="Tên thiết bị",
         comodel_name="equipment.manager",
         required=True,
         ondelete="cascade",
