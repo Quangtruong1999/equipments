@@ -39,6 +39,43 @@
             <field name="arch" type="xml">
                 <search string="filter_time">
                     <filter string="Time" name="filter_stop_time_event" date="stop" />
+                    <separator/>
+                    <filter string="This day" name="this_day" domain="[
+                        ('stop','&lt;=', datetime.datetime.combine(context_today() + relativedelta(days=1), datetime.time(0,0,1)).strftime('%Y-%m-%d')),
+                        ('stop','&gt;=', datetime.datetime.combine(context_today() + relativedelta(days=-1), datetime.time(23,59,59)).strftime('%Y-%m-%d'))
+                    ]"/>
+                    <filter string="This week" name="this_week" domain="[
+                        ('stop', '&lt;=', datetime.datetime.combine(context_today() + relativedelta(weeks=0, days=0, weekday=0), datetime.time(0,0,0)).strftime('%Y-%m-%d')),
+                        ('stop', '&gt;=', datetime.datetime.combine(context_today() + relativedelta(weeks=-2, days=6, weekday=6), datetime.time(0,0,0)).strftime('%Y-%m-%d'))
+                    ]"/>
+                    <separator/>
+                    <filter string="Next 7 days" name="next_7days" domain="[
+                        ('stop', '&gt;=', datetime.datetime.combine(datetime.datetime.now(), datetime.time(0,0,0)).strftime('%Y-%m-%d')),
+                        ('stop', '&lt;=', datetime.datetime.combine(context_today() + relativedelta(days=7), datetime.time(0,0,0)).strftime('%Y-%m-%d'))
+                    ]"/>
+                    <filter string="Next 30 days" name="next_30days" domain="[
+                        ('stop', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)).strftime('%Y-%m-%d')),
+                        ('stop', '&lt;=', datetime.datetime.combine(context_today() + relativedelta(days=30), datetime.time(0,0,0)).strftime('%Y-%m-%d'))
+                    ]"/>
+                    <separator/>
+                    <filter string="Last week" name="last_week" domain="[
+                        ('stop', '&lt;=', datetime.datetime.combine(context_today() + relativedelta(weeks=-1, days=0, weekday=0), datetime.time(0,0,0)).strftime('%Y-%m-%d')),
+                        ('stop', '&gt;=', datetime.datetime.combine(context_today() + relativedelta(weeks=-3, days=6, weekday=6), datetime.time(0,0,0)).strftime('%Y-%m-%d'))
+                    ]"/>
+                    <separator/>
+                    <filter string="Next week" name="next_week" domain="[
+                        ('stop', '&lt;=', datetime.datetime.combine(context_today() + relativedelta(weeks=1, days=0, weekday=0), datetime.time(0,0,0)).strftime('%Y-%m-%d')),
+                        ('stop', '&gt;=', datetime.datetime.combine(context_today() + relativedelta(weeks=-1, days=6, weekday=6), datetime.time(0,0,0)).strftime('%Y-%m-%d'))
+                    ]"/>
+                    <filter string="Next month" name="next_month" domain="[
+                        ('stop','&lt;=', (datetime.datetime.now()+relativedelta(months=2)).strftime('%Y-%m-01')),
+                        ('stop','&gt;=', (datetime.datetime.now()+relativedelta(months=1)).strftime('%Y-%m-01'))
+                    ]"/>
+                    <filter string="Next year" name="next_year" domain="[
+                        ('stop','&lt;=', datetime.datetime.combine(context_today() + relativedelta(days=365), datetime.time(23,59,59)).strftime('%%Y-12-31')),
+                        ('stop','&gt;=', datetime.datetime.combine(context_today() + relativedelta(days=365), datetime.time(0,0,0)).strftime('%%Y-01-01'))
+                        ]"/>
+                    <separator/>
                     <filter string="Future" name="filter_future_event" domain="[('stop', '>',datetime.datetime.now().strftime('%Y-%m-%d'))]"/>
                 </search>
             </field>
