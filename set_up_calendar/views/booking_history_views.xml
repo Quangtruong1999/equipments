@@ -6,7 +6,7 @@
             <field name="name">booking.history.form</field>
             <field name="model">booking.history</field>
             <field name="arch" type="xml">
-                <tree string="Lịch đặt thiết bị">
+                <tree string="Lịch đặt thiết bị" default_order="start desc" >
                     <field name="equipment_id"/>
                     <field name="start"/>
                     <field name="stop"/>
@@ -32,7 +32,7 @@
 <!--            </field>-->
 <!--        </record>-->
 
-        <!--        filter-->
+<!--        filter-->
         <record id="view_time_end_event_search" model="ir.ui.view">
             <field name="name">time.search</field>
             <field name="model">booking.history</field>
@@ -44,8 +44,8 @@
                     <filter string="Time" name="filter_stop_time_event" date="stop"/>
                     <separator/>
                     <filter string="This day" name="this_day" domain="[
-                        ('stop','&lt;=', datetime.datetime.combine(context_today() + relativedelta(days=1), datetime.time(0,0,1)).strftime('%Y-%m-%d')),
-                        ('stop','&gt;=', datetime.datetime.combine(context_today() + relativedelta(days=-1), datetime.time(23,59,59)).strftime('%Y-%m-%d'))
+                        ('stop','&lt;=', datetime.datetime.combine(context_today() + relativedelta(days=1), datetime.time(0,0,0)).strftime('%Y-%m-%d 00:00:00')),
+                        ('stop','&gt;=', datetime.datetime.combine(context_today() + relativedelta(days=-1), datetime.time(23,59,59)).strftime('%Y-%m-%d 23:59:59'))
                     ]" />
                     <filter string="This week" name="this_week" domain="[
                         ('stop', '&lt;=', datetime.datetime.combine(context_today() + relativedelta(weeks=0, days=0, weekday=0), datetime.time(0,0,0)).strftime('%Y-%m-%d')),
@@ -75,13 +75,34 @@
                         ('stop','&gt;=', (datetime.datetime.now()+relativedelta(months=1)).strftime('%Y-%m-01'))
                     ]"/>
                     <filter string="Next year" name="next_year" domain="[
-                        ('stop','&lt;=', datetime.datetime.combine(context_today() + relativedelta(days=365), datetime.time(23,59,59)).strftime('%%Y-12-31')),
-                        ('stop','&gt;=', datetime.datetime.combine(context_today() + relativedelta(days=365), datetime.time(0,0,0)).strftime('%%Y-01-01'))
+                        ('stop','&lt;=', datetime.datetime.combine(context_today() + relativedelta(days=365), datetime.time(23,59,59)).strftime('%%Y-12-31 23:59:59')),
+                        ('stop','&gt;=', datetime.datetime.combine(context_today() + relativedelta(days=365), datetime.time(0,0,0)).strftime('%%Y-01-01 00:00:00'))
                         ]"/>
                     <separator/>
                     <filter string="Future" name="filter_future_event"
                             domain="[('stop', '>',datetime.datetime.now().strftime('%Y-%m-%d'))]"/>
+
+<!--                    group-->
+                    <filter name="equipment" string="Thiết bị" icon="terp-partner"
+                            context="{'group_by':'equipment_id'}"/>
+                    <filter name="user" string="Người dùng" icon="terp-partner"
+                            context="{'group_by':'user_id'}"/>
                 </search>
+            </field>
+        </record>
+
+        <!--        event calendar-->
+        <record model="ir.ui.view" id="view_calendar_order_history">
+            <field name="name">view.alendar.order.history</field>
+            <field name="model">booking.history</field>
+            <field name="arch" type="xml">
+                <calendar string="Order History" date_start="start" date_stop="stop" date_delay="duration" color="equipment_id">
+                    <field name="equipment_id"/>
+<!--                    <field name="equipment_id" options="{'block': True, 'icon': 'fa fa-users'}"-->
+<!--                           filters="1" widget="many2manyattendee" write_model="calendar.filters"-->
+<!--                           write_field="equipment_id"-->
+<!--                    />-->
+                </calendar>
             </field>
         </record>
 
@@ -90,7 +111,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">booking.history</field>
             <field name="context">{"this_day": 1}</field>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">calendar,tree</field>
             <field name="context">{"search_default_this_day":1}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
@@ -98,5 +119,6 @@
                 </p>
             </field>
         </record>
+
     </data>
 </odoo>

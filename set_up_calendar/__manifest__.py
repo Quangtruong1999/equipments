@@ -28,6 +28,7 @@
         'views/equipment_manager_views.xml',
         'views/booking_history_views.xml',
         'views/menus.xml',
+        # 'views/order_history_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

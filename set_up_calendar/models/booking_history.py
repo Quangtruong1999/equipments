@@ -27,6 +27,7 @@ class BookingHistory(models.Model):
         required=True,
         ondelete="cascade",
     )
+    name = fields.Char(related='equipment_id.name', string='Tên thiết bị')
     calendar_event_id = fields.Many2one('calendar.event', 'Mã lịch sử dụng thiết bị',
                                         required=True, index=True, store=True)
 
