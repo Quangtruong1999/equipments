@@ -31,7 +31,5 @@
                   action="equipment_manager_act_window" sequence="1"/>
         <menuitem id="menu_book_equiment_tag" name="Từ khóa" action="equipment_tag_act_window" sequence="2"
                   parent="menu_set_up_management1"/>
-<!--        <menuitem id="menu_oder_equiment_history" name="Lịch sử đặt thiết bị" action="order_history" sequence="3"-->
-<!--                  parent="menu_set_up_management1"/>-->
     </data>
 </odoo>
