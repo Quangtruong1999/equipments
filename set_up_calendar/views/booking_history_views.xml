@@ -102,6 +102,10 @@
 <!--                           filters="1" widget="many2manyattendee" write_model="calendar.filters"-->
 <!--                           write_field="equipment_id"-->
 <!--                    />-->
+                    <field name="equipment_id" options="{'block': True, 'icon': 'fa fa-users'}"
+                           filters="1" write_model="equipment.filters"
+                           write_field="equipment_id" filter_field="equipment_checked"
+                    />
                 </calendar>
             </field>
         </record>

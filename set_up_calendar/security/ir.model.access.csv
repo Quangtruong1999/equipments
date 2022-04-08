@@ -3,3 +3,4 @@ access_calendar_event,access.calendar.event,model_calendar_event,base.group_user
 access_equipment_manager,access.equipment.manager,model_equipment_manager,base.group_user,1,1,1,1
 access_equipment_tag,access.equipment.tag,model_equipment_tag,base.group_user,1,1,1,1
 access_booking_history,access.booking.history,model_booking_history,base.group_user,1,1,1,1
+access_equipment_filter,access.equipment.filter,model_equipment_filters,base.group_user,1,1,1,1
